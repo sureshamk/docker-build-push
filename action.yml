@@ -20,6 +20,9 @@ inputs:
   password:
     description: 'Docker registry password'
     required: false
+  path:
+    description: 'Docker path'
+    required: false
 outputs:
   imageFullName:
     description: 'Full name of the Docker image'
