@@ -40,13 +40,14 @@ const createTag = () => {
 
 const build = imageName => {
   const dockerfile = core.getInput('dockerfile');
+  const path = core.getInput('path') || '.';
 
   if (!fs.existsSync(dockerfile)) {
     core.setFailed(`Dockerfile does not exist in location ${dockerfile}`);
   }
 
   core.info(`Building Docker image: ${imageName}`);
-  cp.execSync(`docker build -f ${dockerfile} -t ${imageName} .`);
+  cp.execSync(`docker build -f ${dockerfile} -t ${imageName} ${path}`);
 };
 
 const isEcr = registry => registry && registry.includes('amazonaws');
